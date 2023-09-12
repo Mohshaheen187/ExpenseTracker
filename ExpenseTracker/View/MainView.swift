@@ -50,8 +50,12 @@ struct MainView: View {
             }
             .sheet(isPresented: $addNewIncome) {
                 IncomeView()
+                    .presentationDragIndicator(.visible)
+                    .presentationDetents([.fraction(0.75)])
             }
         }
+        .tint(Color("color4"))
+        .colorMultiply(Color("color1"))
     }
     
     private func deleteTransaction(offsets: IndexSet) {

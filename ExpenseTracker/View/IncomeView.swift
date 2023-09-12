@@ -19,22 +19,30 @@ struct IncomeView: View {
     
     //MARK: BODY
     var body: some View {
-        Form {
-            Section {
-                TextField("Title", text: $title, axis: .vertical)
-                VStack {
-                    Text("Amount: \(String(format: "%.2f", amount))")
-                    Slider(value: $amount, in: 0...1000, step: 1)
+        NavigationStack {
+            Form {
+                Section {
+                    TextField("Title", text: $title, axis: .vertical)
+                    VStack {
+                        Text("Amount: \(String(format: "%.2f", amount))")
+                        Slider(value: $amount, in: 0...1000, step: 1)
+                    }
+                    
+                    DatePicker("Payment Day", selection: $date, displayedComponents: [.date])
                 }
-                
-                DatePicker("Payment Day", selection: $date, displayedComponents: [.date])
-                
-                Button("Submit") {
-                    DataController().addIncome(title: title, amount: amount, date: date, context: moc)
-                    dismiss()
+            }
+            .navigationTitle("Add new income")
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
+                    Button("Submit") {
+                        DataController().addIncome(title: title, amount: amount, date: date, context: moc)
+                        dismiss()
+                    }
                 }
             }
         }
+        .tint(Color("color4"))
+        .colorMultiply(Color("color1"))
     }
 }
 

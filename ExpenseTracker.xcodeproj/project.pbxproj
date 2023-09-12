@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		6A28A8B52AB11F4500EFFC22 /* TabViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28A8B42AB11F4500EFFC22 /* TabViews.swift */; };
 		6A28A8B72AB1200A00EFFC22 /* ChartsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A28A8B62AB1200A00EFFC22 /* ChartsView.swift */; };
+		6A28A8B92AB1253D00EFFC22 /* Fonzie.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6A28A8B82AB1253D00EFFC22 /* Fonzie.otf */; };
 		6AC14AA02AB0C6BE00E38074 /* ExpenseTrackerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC14A9F2AB0C6BE00E38074 /* ExpenseTrackerApp.swift */; };
 		6AC14AA22AB0C6BE00E38074 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC14AA12AB0C6BE00E38074 /* MainView.swift */; };
 		6AC14AA42AB0C6BF00E38074 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6AC14AA32AB0C6BF00E38074 /* Assets.xcassets */; };
@@ -23,6 +24,8 @@
 /* Begin PBXFileReference section */
 		6A28A8B42AB11F4500EFFC22 /* TabViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViews.swift; sourceTree = "<group>"; };
 		6A28A8B62AB1200A00EFFC22 /* ChartsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsView.swift; sourceTree = "<group>"; };
+		6A28A8B82AB1253D00EFFC22 /* Fonzie.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fonzie.otf; sourceTree = "<group>"; };
+		6A28A8BA2AB1255400EFFC22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		6AC14A9C2AB0C6BE00E38074 /* ExpenseTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ExpenseTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AC14A9F2AB0C6BE00E38074 /* ExpenseTrackerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseTrackerApp.swift; sourceTree = "<group>"; };
 		6AC14AA12AB0C6BE00E38074 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -65,11 +68,13 @@
 		6AC14A9E2AB0C6BE00E38074 /* ExpenseTracker */ = {
 			isa = PBXGroup;
 			children = (
+				6A28A8BA2AB1255400EFFC22 /* Info.plist */,
 				6AC14AB52AB0DF8600E38074 /* Helpers */,
 				6AC14AAF2AB0C78600E38074 /* View */,
 				6AC14AAE2AB0C77B00E38074 /* VewModel */,
 				6AC14AAD2AB0C75300E38074 /* Model */,
 				6AC14A9F2AB0C6BE00E38074 /* ExpenseTrackerApp.swift */,
+				6A28A8B82AB1253D00EFFC22 /* Fonzie.otf */,
 				6AC14AA32AB0C6BF00E38074 /* Assets.xcassets */,
 				6AC14AA52AB0C6BF00E38074 /* Preview Content */,
 			);
@@ -179,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6AC14AA72AB0C6BF00E38074 /* Preview Assets.xcassets in Resources */,
+				6A28A8B92AB1253D00EFFC22 /* Fonzie.otf in Resources */,
 				6AC14AA42AB0C6BF00E38074 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +336,7 @@
 				DEVELOPMENT_TEAM = RSUPW75C3B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -359,6 +366,7 @@
 				DEVELOPMENT_TEAM = RSUPW75C3B;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = ExpenseTracker/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

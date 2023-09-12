@@ -12,9 +12,12 @@ struct ChartsView: View {
         NavigationStack {
             VStack {
                 Text("Coming Soon!")
+                    .font(Font.custom("Fonzie", size: 30))
             }
             .navigationTitle("Charts")
         }
+        .tint(Color("color4"))
+        .colorMultiply(Color("color1"))
     }
 }
 

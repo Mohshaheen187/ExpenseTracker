@@ -10,7 +10,6 @@ import SwiftUI
 struct EditIncomeView: View {
     
     //MARK: Propreties
-    
     @Environment (\.managedObjectContext) var moc
     @Environment (\.dismiss) var dismiss
     
@@ -37,14 +36,19 @@ struct EditIncomeView: View {
                     }
                     
                     DatePicker("Payment Day", selection: $date, displayedComponents: [.date])
-                    
+                }
+            }
+            .navigationTitle("Edit Income")
+            .toolbar {
+                ToolbarItem(placement: .bottomBar) {
                     Button("Done") {
                         DataController().editTransaction(incomeTrans: income, title: title, amount: amount, date: date, context:  moc)
                         dismiss()
                     }
                 }
             }
-            .navigationTitle("Edit Income")
         }
+        .tint(Color("color4"))
+        .colorMultiply(Color("color1"))
     }
 }
