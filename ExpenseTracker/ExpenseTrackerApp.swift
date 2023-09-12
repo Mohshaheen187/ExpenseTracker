@@ -14,7 +14,7 @@ struct ExpenseTrackerApp: App {
     
     var body: some Scene {
         WindowGroup {
-            MainView()
+            TabViews()
                 .environment(\.managedObjectContext, dataController.container.viewContext)
         }
     }
