@@ -9,11 +9,13 @@ import SwiftUI
 
 struct MainView: View {
     
+    //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
     @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var income : FetchedResults<Income>
     
     @State private var addNewIncome : Bool = false
     
+    //MARK: BODY
     var body: some View {
         NavigationStack {
             List {

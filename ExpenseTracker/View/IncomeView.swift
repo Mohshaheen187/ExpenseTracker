@@ -9,6 +9,7 @@ import SwiftUI
 
 struct IncomeView: View {
     
+    //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
     @Environment (\.dismiss) var dismiss
     
@@ -16,6 +17,7 @@ struct IncomeView: View {
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
     
+    //MARK: BODY
     var body: some View {
         Form {
             Section {

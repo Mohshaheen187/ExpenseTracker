@@ -9,6 +9,8 @@ import SwiftUI
 
 struct EditIncomeView: View {
     
+    //MARK: Propreties
+    
     @Environment (\.managedObjectContext) var moc
     @Environment (\.dismiss) var dismiss
     
@@ -18,6 +20,7 @@ struct EditIncomeView: View {
     
     var income: FetchedResults<Income>.Element
     
+    //MARK: BODY
     var body: some View {
         NavigationStack {
             Form {
