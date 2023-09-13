@@ -26,8 +26,7 @@ struct AddIncomeView: View {
             VStack {
                 newIncomeComponents(title: $title, amount: $amount, date: $date)
             }
-            .navigationTitle("Add New Income")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Income stream")
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -80,48 +79,38 @@ struct newIncomeComponents : View {
     @Binding var amount : Double
     @Binding var date : Date
     
+    @State private var selectedCategory : Category = .health
+    
     //MARK: BODY
     var body: some View {
-        VStack(spacing: 25) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Title")
-                    .foregroundColor(.secondary)
-                    .bold()
+        List {
+            Section("Title") {
                 TextField("Where did you get the money?", text: $title, axis: .vertical)
-                    .padding(12)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
-                            .opacity(0.5)
-                    }
             }
-            .padding([.leading, .trailing])
             
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Amount")
-                    .foregroundColor(.secondary)
-                    .bold()
+            Section("Amount") {
                 TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
                     .keyboardType(.decimalPad)
-                    .padding(12)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
-                            .opacity(0.5)
-                    }
             }
-            .padding([.leading, .trailing])
             
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Date")
-                    .foregroundColor(.secondary)
-                    .bold()
+            Section("Date") {
                 DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
                     .font(Font.custom("Fonzie", size: 15))
             }
-            .padding([.leading, .trailing])
             
-            Spacer()
+            Section("Category") {
+                Picker("Select a category", selection: $selectedCategory) {
+                    ForEach(Category.allCases, id: \.self) { category in
+                        Label {
+                            Text(category.rawValue)
+                        } icon: {
+                            Image(systemName: category.imageName)
+                                .foregroundColor(category.imageColor)
+                        }
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
         }
         .tint(Color("color4"))
         .font(Font.custom("Fonzie", size: 20))

@@ -28,6 +28,7 @@ struct EditOutcomeView: View {
                 Section("Title") {
                     TextField("\(outcome.title!)", text: $title, axis: .vertical)
                 }
+                
                 Section("Amount") {
                     TextField("\(outcome.amount)", value: $amount, formatter: NumberFormatter())
                         .keyboardType(.decimalPad)
