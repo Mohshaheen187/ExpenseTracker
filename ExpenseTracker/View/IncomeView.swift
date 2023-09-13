@@ -41,20 +41,23 @@ struct IncomeView: View {
                     EditIncomeView(income: inc)
                 } label: {
                     HStack(alignment: .center) {
-                        Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
-                            .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
-                            .font(.system(size: 30))
-                        VStack(alignment: .leading) {
+                        Label {
                             Text(inc.title!)
                                 .font(Font.custom("Fonzie", size: 25))
+                        } icon: {
+                            Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
+                                .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            Text(calcTimeSince(date: inc.date!))
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.secondary)
                             Text("\(String(format: "%.2f", inc.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }
-                        Spacer()
-                        Text(calcTimeSince(date: inc.date!))
-                            .font(Font.custom("Fonzie", size: 15))
-                            .foregroundColor(.secondary)
                     }
                 }
             }

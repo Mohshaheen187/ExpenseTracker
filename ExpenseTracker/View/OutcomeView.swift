@@ -41,20 +41,23 @@ struct OutcomeView: View {
                     EditOutcomeView(outcome: out)
                 } label: {
                     HStack(alignment: .center) {
-                        Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
-                            .foregroundColor(Category(rawValue: out.category ?? "")?.imageColor ?? .gray)
-                            .font(.system(size: 30))
-                        VStack(alignment: .leading) {
+                        Label {
                             Text(out.title!)
                                 .font(Font.custom("Fonzie", size: 25))
-                            Text("\(String(format: "%.2f", out.amount))")
-                                .font(Font.custom("Fonzie", size: 15))
-                                .foregroundColor(.red)
+                        } icon: {
+                            Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
+                                .foregroundColor(Category(rawValue: out.category!)?.imageColor ?? .gray)
+                                .font(.system(size: 30))
                         }
                         Spacer()
-                        Text(calcTimeSince(date: out.date!))
-                            .font(Font.custom("Fonzie", size: 15))
-                            .foregroundColor(.secondary)
+                        VStack(alignment: .trailing) {
+                            Text(calcTimeSince(date: out.date!))
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.secondary)
+                            Text("\(String(format: "%.2f", out.amount))")
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.green)
+                        }
                     }
                 }
             }
