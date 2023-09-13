@@ -39,7 +39,7 @@ struct AddOutcomeView: View {
                             
                             presentAlert = AlertsHandling(id: 2, title: "Congratulations🥳", message: "Your transaction saved successfully!")
                             
-                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
+                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.rawValue, context: moc)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 dismiss()

@@ -69,7 +69,7 @@ struct EditIncomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, category: selectedCategory.rawValue, context:  moc)
+                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.rawValue, context:  moc)
                         dismiss()
                     }
                 }

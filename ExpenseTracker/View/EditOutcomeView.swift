@@ -68,7 +68,7 @@ struct EditOutcomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        DataController().editOutcomeTransaction(outcomeTrans: outcome, title: title, amount: amount, date: date, category: selectedCategory.rawValue, context:  moc)
+                        DataController().editOutcomeTransaction(outcomeTrans: outcome, title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.rawValue, context:  moc)
                         dismiss()
                     }
                 }
