@@ -14,12 +14,18 @@ enum Category: String, CaseIterable {
     case food
     case transport
     case education
+    case groceries
+    case sport
     case gym
+    case money
+    case shopping
+    case gift
+    case phone
     
     var imageName: String {
         switch self {
         case .health:
-            return "bandage.fill"
+            return "cross.case.fill"
         case .car:
             return "car.fill"
         case .food:
@@ -28,8 +34,20 @@ enum Category: String, CaseIterable {
             return "bus.fill"
         case .education:
             return "graduationcap.fill"
+        case .sport:
+            return "sportscourt.fill"
         case .gym:
             return "dumbbell.fill"
+        case .money:
+            return "centsign.circle.fill"
+        case .groceries:
+            return "basket.fill"
+        case .shopping:
+            return "creditcard.fill"
+        case .gift:
+            return "gift.fill"
+        case .phone:
+            return "phone.fill"
         }
     }
     
@@ -45,8 +63,20 @@ enum Category: String, CaseIterable {
             return Color.green
         case .education:
             return Color.primary
+        case .sport:
+            return Color.green
         case .gym:
             return Color.gray
+        case .money:
+            return Color.green
+        case .groceries:
+            return Color.teal
+        case .shopping:
+            return Color.indigo
+        case .gift:
+            return Color.yellow
+        case .phone:
+            return Color.cyan
         }
     }
 }

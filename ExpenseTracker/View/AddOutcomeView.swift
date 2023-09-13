@@ -103,7 +103,7 @@ struct newOutcomeComponents : View {
                 Picker("Select a category", selection: $selectedCategory) {
                     ForEach(Category.allCases, id: \.self) { category in
                         Label {
-                            Text(category.rawValue)
+                            Text(category.rawValue.capitalized)
                         } icon: {
                             Image(systemName: category.imageName)
                                 .foregroundColor(category.imageColor)

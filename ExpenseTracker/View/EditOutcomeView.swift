@@ -43,7 +43,7 @@ struct EditOutcomeView: View {
                     Picker("Select a category", selection: $selectedCategory) {
                         ForEach(Category.allCases, id: \.self) { category in
                             Label {
-                                Text(category.rawValue)
+                                Text(category.rawValue.capitalized)
                             } icon: {
                                 Image(systemName: category.imageName)
                                     .foregroundColor(category.imageColor)
@@ -53,7 +53,8 @@ struct EditOutcomeView: View {
                     .pickerStyle(.navigationLink)
                 }
             }
-            .navigationTitle("Edit Outcome")
+            .navigationTitle("Edit Transaction")
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {

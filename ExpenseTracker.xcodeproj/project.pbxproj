@@ -104,9 +104,9 @@
 		6AC14AAD2AB0C75300E38074 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6AEB80B92AB1F1F50075B4EB /* Category.swift */,
 				6AC14AB02AB0C7AA00E38074 /* ExpensesModel.xcdatamodeld */,
 				6AC14AB32AB0C8D000E38074 /* DataController.swift */,
-				6AEB80B92AB1F1F50075B4EB /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

@@ -43,7 +43,7 @@ struct EditIncomeView: View {
                     Picker("Select a category", selection: $selectedCategory) {
                         ForEach(Category.allCases, id: \.self) { category in
                             Label {
-                                Text(category.rawValue)
+                                Text(category.rawValue.capitalized)
                                     .tag(category.rawValue)
                             } icon: {
                                 Image(systemName: category.imageName)
@@ -54,7 +54,8 @@ struct EditIncomeView: View {
                     .pickerStyle(.navigationLink)
                 }
             }
-            .navigationTitle("Edit Income")
+            .navigationTitle("Edit Transaction")
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
