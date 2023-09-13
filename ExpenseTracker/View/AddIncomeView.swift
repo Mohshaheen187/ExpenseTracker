@@ -19,6 +19,7 @@ struct AddIncomeView: View {
     @State private var isIncomeAdded : Bool = false
     
     @State private var presentAlert : AlertsHandling?
+    @State private var selectedCategory: Category = .health
     
     //MARK: BODY
     var body: some View {
@@ -37,7 +38,7 @@ struct AddIncomeView: View {
                             
                             presentAlert = AlertsHandling(id: 2, title: "Congratulations🥳", message: "Your transaction saved successfully!")
                             
-                            DataController().addIncome(title: title, amount: amount, date: date, context: moc)
+                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 dismiss()

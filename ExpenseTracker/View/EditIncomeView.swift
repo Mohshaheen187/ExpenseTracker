@@ -44,6 +44,7 @@ struct EditIncomeView: View {
                         ForEach(Category.allCases, id: \.self) { category in
                             Label {
                                 Text(category.rawValue)
+                                    .tag(category.rawValue)
                             } icon: {
                                 Image(systemName: category.imageName)
                                     .foregroundColor(category.imageColor)
@@ -57,7 +58,7 @@ struct EditIncomeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, context:  moc)
+                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, category: selectedCategory.rawValue, context:  moc)
                         dismiss()
                     }
                 }

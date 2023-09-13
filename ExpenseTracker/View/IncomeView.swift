@@ -29,6 +29,8 @@ struct IncomeView: View {
                     EditIncomeView(income: inc)
                 } label: {
                     HStack(alignment: .center) {
+                        Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
+                            .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
                         VStack(alignment: .leading) {
                             Text(inc.title!)
                                 .font(Font.custom("Fonzie", size: 25))
