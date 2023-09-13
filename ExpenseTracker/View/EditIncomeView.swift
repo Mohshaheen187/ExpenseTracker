@@ -19,6 +19,8 @@ struct EditIncomeView: View {
     
     var income: FetchedResults<Income>.Element
     
+    @State private var selectedCategory : Category = .health
+    
     //MARK: BODY
     var body: some View {
         NavigationStack {
@@ -34,6 +36,20 @@ struct EditIncomeView: View {
                 Section("Date") {
                     DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
                         .font(Font.custom("Fonzie", size: 15))
+                }
+                
+                Section("Category") {
+                    Picker("Select a category", selection: $selectedCategory) {
+                        ForEach(Category.allCases, id: \.self) { category in
+                            Label {
+                                Text(category.rawValue)
+                            } icon: {
+                                Image(systemName: category.imageName)
+                                    .foregroundColor(category.imageColor)
+                            }
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
                 }
             }
             .navigationTitle("Edit Income")
