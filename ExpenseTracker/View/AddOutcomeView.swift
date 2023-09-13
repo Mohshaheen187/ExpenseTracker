@@ -19,7 +19,7 @@ struct AddOutcomeView: View {
     @State private var isIncomeAdded : Bool = false
     
     @State private var presentAlert : AlertsHandling?
-    @State private var selectedCategory: Category = .health
+    @State private var selectedCategory: Category = .car
     
     //MARK: BODY
     var body: some View {
@@ -101,7 +101,7 @@ struct newOutcomeComponents : View {
             
             Section("Category") {
                 Picker("Select a category", selection: $selectedCategory) {
-                    ForEach(Category.allCases, id: \.self) { category in
+                    ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
                         Label {
                             Text(category.rawValue.capitalized)
                         } icon: {
