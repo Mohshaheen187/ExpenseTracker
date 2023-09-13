@@ -1,13 +1,13 @@
 //
-//  EditIncomeView.swift
+//  EditOutcomeView.swift
 //  ExpenseTracker
 //
-//  Created by Mohammed Shaheen on 12.09.23.
+//  Created by Mohammed Shaheen on 13.09.23.
 //
 
 import SwiftUI
 
-struct EditIncomeView: View {
+struct EditOutcomeView: View {
     
     //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
@@ -17,21 +17,21 @@ struct EditIncomeView: View {
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
     
-    var income: FetchedResults<Income>.Element
+    var outcome: FetchedResults<Outcome>.Element
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("\(income.title!)", text: $title)
+                    TextField("\(outcome.title!)", text: $title)
                         .onAppear {
-                            title = income.title!
-                            amount = income.amount
-                            date = income.date!
+                            title = outcome.title!
+                            amount = outcome.amount
+                            date = outcome.date!
                         }
                     VStack {
-                        Text("Amount: \(String(format: "%.2f", income.amount))")
+                        Text("Amount: \(String(format: "%.2f", outcome.amount))")
                         TextField("Amount", value: $amount, formatter: NumberFormatter())
                             .keyboardType(.decimalPad)
                     }
@@ -43,7 +43,7 @@ struct EditIncomeView: View {
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button("Done") {
-                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, context:  moc)
+                        DataController().editOutcomeTransaction(outcomeTrans: outcome, title: title, amount: amount, date: date, context: moc)
                         dismiss()
                     }
                 }

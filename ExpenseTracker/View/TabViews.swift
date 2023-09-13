@@ -18,6 +18,7 @@ struct TabViews: View {
                 .tabItem {
                     Label("Dashboard", systemImage: "house")
                 }
+            
             ChartsView()
                 .tag(2)
                 .tabItem {

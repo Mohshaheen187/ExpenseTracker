@@ -7,61 +7,38 @@
 
 import SwiftUI
 
+enum TransactionType {
+    case income
+    case outcome
+}
+
 struct MainView: View {
     
     //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var income : FetchedResults<Income>
-    
     @State private var addNewIncome : Bool = false
+    @State private var selectedTransactionType : TransactionType = .income
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(income) { inc in
-                    NavigationLink {
-                        EditIncomeView(income: inc)
-                    } label: {
-                        HStack {
-                            VStack(alignment: .leading) {
-                                Text("\(inc.title!)")
-                                Text("\(inc.date!, style: .date)")
-                            }
-                            Spacer()
-                            Text(calcTimeSince(date: inc.date!))
-                        }
-                    }
+            VStack {
+                Picker("", selection: $selectedTransactionType) {
+                    Text("Income").tag(TransactionType.income)
+                    Text("Outcome").tag(TransactionType.outcome)
                 }
-                .onDelete(perform: deleteTransaction)
-            }
-            .navigationTitle("Add Income")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    EditButton()
+                .pickerStyle(.segmented)
+                
+                if selectedTransactionType == .income {
+                    IncomeView()
+                } else {
+                    OutcomeView()
                 }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        addNewIncome.toggle()
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                    }
-                }
+                
+                Spacer()
             }
-            .sheet(isPresented: $addNewIncome) {
-                IncomeView()
-                    .presentationDragIndicator(.visible)
-                    .presentationDetents([.fraction(0.75)])
-            }
-        }
-        .tint(Color("color4"))
-        .colorMultiply(Color("color1"))
-    }
-    
-    private func deleteTransaction(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { income[$0] }.forEach(moc.delete)
-            DataController().saveTransaction(context: moc)
+            .padding()
+            .navigationTitle("Transactions")
         }
     }
 }
@@ -71,4 +48,41 @@ struct ContentView_Previews: PreviewProvider {
         MainView()
     }
 }
+/*
+List {
+    ForEach(income) { inc in
+        NavigationLink {
+            EditIncomeView(income: inc)
+        } label: {
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("\(inc.title!)")
+                    Text("\(inc.date!, style: .date)")
+                }
+                Spacer()
+                Text(calcTimeSince(date: inc.date!))
+            }
+        }
+    }
+    .onDelete(perform: deleteTransaction)
+}
+.navigationTitle("Add Income")
+.toolbar {
+    ToolbarItem(placement: .navigationBarLeading) {
+        EditButton()
+    }
+    ToolbarItem(placement: .navigationBarTrailing) {
+        Button {
+            addNewIncome.toggle()
+        } label: {
+            Image(systemName: "plus.circle.fill")
+        }
+    }
+}
+.sheet(isPresented: $addNewIncome) {
+    IncomeView()
+        .presentationDragIndicator(.visible)
+        .presentationDetents([.fraction(0.75)])
+}
+ */
 

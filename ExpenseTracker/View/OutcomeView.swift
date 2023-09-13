@@ -1,16 +1,16 @@
 //
-//  IncomeView.swift
+//  OutcomeView.swift
 //  ExpenseTracker
 //
-//  Created by Mohammed Shaheen on 12.09.23.
+//  Created by Mohammed Shaheen on 13.09.23.
 //
 
 import SwiftUI
 
-struct IncomeView: View {
+struct OutcomeView: View {
     
     //MARK: Propreties
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var income : FetchedResults<Income>
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var outcome : FetchedResults<Outcome>
     
     @Environment (\.managedObjectContext) var moc
     @Environment (\.dismiss) var dismiss
@@ -19,29 +19,27 @@ struct IncomeView: View {
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
     
-    @State private var addIncome : Bool = false
+    @State private var addOutcome : Bool = false
     
     //MARK: BODY
     var body: some View {
         List {
-            ForEach(income) { inc in
+            ForEach(outcome) { out in
                 NavigationLink {
-                    EditIncomeView(income: inc)
+                    EditOutcomeView(outcome: out)
                 } label: {
                     HStack {
                         VStack(alignment: .leading) {
-                            Text(inc.title!)
+                            Text(out.title!)
                                 .font(.title2)
                                 .bold()
-                            Text("\(String(format: "%.2f", inc.amount))")
+                            Text("\(String(format: "%.2f", out.amount))")
                         }
                         Spacer()
-                        Text(calcTimeSince(date: inc.date!))
+                        Text(calcTimeSince(date: out.date!))
                     }
                 }
             }
-            .onDelete(perform: deleteTransaction)
-            .tint(.black)
         }
         .listStyle(.inset)
         .toolbar {
@@ -50,30 +48,22 @@ struct IncomeView: View {
             }
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    addIncome = true
+                    addOutcome = true
                 } label: {
                     Image(systemName: "plus.circle.fill")
                 }
-                .sheet(isPresented: $addIncome) {
-                    AddNewIncomeView()
+                .sheet(isPresented: $addOutcome) {
+                    AddOutcomeView()
                         .presentationDetents([.fraction(0.75)])
                         .presentationDragIndicator(.visible)
                 }
             }
         }
     }
-    
-    private func deleteTransaction(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { income[$0] }.forEach(moc.delete)
-            DataController().saveTransaction(context: moc)
-        }
-    }
 }
 
-struct IncomeView_Previews: PreviewProvider {
+struct OutcomeView_Previews: PreviewProvider {
     static var previews: some View {
-        IncomeView()
+        OutcomeView()
     }
 }
-
