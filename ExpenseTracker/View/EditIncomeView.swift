@@ -22,46 +22,19 @@ struct EditIncomeView: View {
     //MARK: BODY
     var body: some View {
         NavigationStack {
-            VStack(spacing: 25) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Title")
-                        .foregroundColor(.secondary)
-                        .bold()
+            List {
+                Section("Title") {
                     TextField("\(income.title!)", text: $title, axis: .vertical)
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
-                                .opacity(0.5)
-                        }
                 }
-                .padding([.leading, .trailing])
-                
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Amount")
-                        .foregroundColor(.secondary)
-                        .bold()
+                Section("Amount") {
                     TextField("\(income.amount)", value: $amount, formatter: NumberFormatter())
                         .keyboardType(.decimalPad)
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
-                                .opacity(0.5)
-                        }
                 }
-                .padding([.leading, .trailing])
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Date")
-                        .foregroundColor(.secondary)
-                        .bold()
+                Section("Date") {
                     DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
                         .font(Font.custom("Fonzie", size: 15))
                 }
-                .padding([.leading, .trailing])
-                
-                Spacer()
             }
             .navigationTitle("Edit Income")
             .toolbar {

@@ -24,6 +24,7 @@
 		6ACED8B12AB1A22C00FEF6FE /* OutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B02AB1A22C00FEF6FE /* OutcomeView.swift */; };
 		6ACED8B32AB1A91B00FEF6FE /* EditOutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */; };
 		6ACED8B52AB1AA0500FEF6FE /* AddOutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B42AB1AA0500FEF6FE /* AddOutcomeView.swift */; };
+		6AEB80BA2AB1F1F50075B4EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB80B92AB1F1F50075B4EB /* Category.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		6ACED8B02AB1A22C00FEF6FE /* OutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeView.swift; sourceTree = "<group>"; };
 		6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOutcomeView.swift; sourceTree = "<group>"; };
 		6ACED8B42AB1AA0500FEF6FE /* AddOutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutcomeView.swift; sourceTree = "<group>"; };
+		6AEB80B92AB1F1F50075B4EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 			children = (
 				6AC14AB02AB0C7AA00E38074 /* ExpensesModel.xcdatamodeld */,
 				6AC14AB32AB0C8D000E38074 /* DataController.swift */,
+				6AEB80B92AB1F1F50075B4EB /* Category.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 				6AC14AB42AB0C8D000E38074 /* DataController.swift in Sources */,
 				6AC14ABB2AB1010C00E38074 /* EditIncomeView.swift in Sources */,
 				6AC14AB22AB0C7AA00E38074 /* ExpensesModel.xcdatamodeld in Sources */,
+				6AEB80BA2AB1F1F50075B4EB /* Category.swift in Sources */,
 				6ACED8AF2AB1A1A700FEF6FE /* AddIncomeView.swift in Sources */,
 				6A28A8B52AB11F4500EFFC22 /* TabViews.swift in Sources */,
 				6AC14AA02AB0C6BE00E38074 /* ExpenseTrackerApp.swift in Sources */,
