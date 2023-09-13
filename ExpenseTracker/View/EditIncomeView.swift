@@ -19,55 +19,47 @@ struct EditIncomeView: View {
     
     var income: FetchedResults<Income>.Element
     
+    @State private var selectedCategory : Category = .car
+    
     //MARK: BODY
     var body: some View {
         NavigationStack {
-            VStack(spacing: 25) {
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Title")
-                        .foregroundColor(.secondary)
-                        .bold()
+            List {
+                Section("Title") {
                     TextField("\(income.title!)", text: $title, axis: .vertical)
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
-                                .opacity(0.5)
-                        }
                 }
-                .padding([.leading, .trailing])
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Amount")
-                        .foregroundColor(.secondary)
-                        .bold()
+                Section("Amount") {
                     TextField("\(income.amount)", value: $amount, formatter: NumberFormatter())
                         .keyboardType(.decimalPad)
-                        .padding(12)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
-                                .opacity(0.5)
-                        }
                 }
-                .padding([.leading, .trailing])
                 
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Date")
-                        .foregroundColor(.secondary)
-                        .bold()
+                Section("Date") {
                     DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
                         .font(Font.custom("Fonzie", size: 15))
                 }
-                .padding([.leading, .trailing])
                 
-                Spacer()
+                Section("Category") {
+                    Picker("Select a category", selection: $selectedCategory) {
+                        ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                            Label {
+                                Text(category.rawValue.capitalized)
+                                    .tag(category.rawValue)
+                            } icon: {
+                                Image(systemName: category.imageName)
+                                    .foregroundColor(category.imageColor)
+                            }
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                }
             }
-            .navigationTitle("Edit Income")
+            .navigationTitle("Edit Transaction")
+            .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, context:  moc)
+                        DataController().editIncomeTransaction(incomeTrans: income, title: title, amount: amount, date: date, category: selectedCategory.rawValue, context:  moc)
                         dismiss()
                     }
                 }

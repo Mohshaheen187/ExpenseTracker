@@ -19,15 +19,15 @@ struct AddOutcomeView: View {
     @State private var isIncomeAdded : Bool = false
     
     @State private var presentAlert : AlertsHandling?
+    @State private var selectedCategory: Category = .car
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
             VStack {
-                newOutcomeComponents(title: $title, amount: $amount, date: $date)
+                newOutcomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
             }
-            .navigationTitle("Add New Income")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle("Outcome stream")
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
@@ -38,7 +38,7 @@ struct AddOutcomeView: View {
                             
                             presentAlert = AlertsHandling(id: 2, title: "Congratulations🥳", message: "Your transaction saved successfully!")
                             
-                            DataController().addOutcome(title: title, amount: amount, date: date, context: moc)
+                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 dismiss()
@@ -80,48 +80,38 @@ struct newOutcomeComponents : View {
     @Binding var amount : Double
     @Binding var date : Date
     
+    @Binding var selectedCategory : Category
+    
     //MARK: BODY
     var body: some View {
-        VStack(spacing: 25) {
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Title")
-                    .foregroundColor(.secondary)
-                    .bold()
-                TextField("Where did you get the money?", text: $title, axis: .vertical)
-                    .padding(12)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
-                            .opacity(0.5)
-                    }
+        List {
+            Section("Title") {
+                TextField("Where did you spend the money?", text: $title, axis: .vertical)
             }
-            .padding([.leading, .trailing])
             
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Amount")
-                    .foregroundColor(.secondary)
-                    .bold()
-                TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
+            Section("Amount") {
+                TextField("How much did you pay?", value: $amount, formatter: NumberFormatter())
                     .keyboardType(.decimalPad)
-                    .padding(12)
-                    .overlay {
-                        RoundedRectangle(cornerRadius: 5)
-                            .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
-                            .opacity(0.5)
-                    }
             }
-            .padding([.leading, .trailing])
             
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Date")
-                    .foregroundColor(.secondary)
-                    .bold()
-                DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
+            Section("Date") {
+                DatePicker("When did you spend the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
                     .font(Font.custom("Fonzie", size: 15))
             }
-            .padding([.leading, .trailing])
             
-            Spacer()
+            Section("Category") {
+                Picker("Select a category", selection: $selectedCategory) {
+                    ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                        Label {
+                            Text(category.rawValue.capitalized)
+                        } icon: {
+                            Image(systemName: category.imageName)
+                                .foregroundColor(category.imageColor)
+                        }
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
         }
         .tint(Color("color4"))
         .font(Font.custom("Fonzie", size: 20))

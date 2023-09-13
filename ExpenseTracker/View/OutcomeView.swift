@@ -21,25 +21,43 @@ struct OutcomeView: View {
     
     @State private var addOutcome : Bool = false
     
+    @State private var searchText : String = ""
+    
+    var filteredOutcome : [Outcome] {
+        if searchText.isEmpty {
+            return Array(outcome)
+        } else {
+            return outcome.filter { inc in
+                inc.title?.localizedCaseInsensitiveContains(searchText) == true
+            }
+        }
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
-            ForEach(outcome) { out in
+            ForEach(filteredOutcome) { out in
                 NavigationLink {
                     EditOutcomeView(outcome: out)
                 } label: {
                     HStack(alignment: .center) {
-                        VStack(alignment: .leading) {
+                        Label {
                             Text(out.title!)
                                 .font(Font.custom("Fonzie", size: 25))
-                            Text("\(String(format: "%.2f", out.amount))")
-                                .font(Font.custom("Fonzie", size: 15))
-                                .foregroundColor(.red)
+                        } icon: {
+                            Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
+                                .foregroundColor(Category(rawValue: out.category!)?.imageColor ?? .gray)
+                                .font(.system(size: 30))
                         }
                         Spacer()
-                        Text(calcTimeSince(date: out.date!))
-                            .font(Font.custom("Fonzie", size: 15))
-                            .foregroundColor(.secondary)
+                        VStack(alignment: .trailing) {
+                            Text(calcTimeSince(date: out.date!))
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.secondary)
+                            Text("\(String(format: "%.2f", out.amount))")
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.green)
+                        }
                     }
                 }
             }
@@ -47,6 +65,7 @@ struct OutcomeView: View {
         }
         .listStyle(.inset)
         .tint(Color("color4"))
+        .searchable(text: $searchText)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
@@ -59,7 +78,6 @@ struct OutcomeView: View {
                 }
                 .sheet(isPresented: $addOutcome) {
                     AddOutcomeView()
-                        .presentationDetents([.fraction(0.5)])
                         .presentationDragIndicator(.visible)
                 }
             }

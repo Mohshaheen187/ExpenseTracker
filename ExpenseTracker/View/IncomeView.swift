@@ -21,25 +21,43 @@ struct IncomeView: View {
     
     @State private var addIncome : Bool = false
     
+    @State private var searchText : String = ""
+    
+    var filteredIncome : [Income] {
+        if searchText.isEmpty {
+            return Array(income)
+        } else {
+            return income.filter { inc in
+                inc.title?.localizedCaseInsensitiveContains(searchText) == true
+            }
+        }
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
-            ForEach(income) { inc in
+            ForEach(filteredIncome) { inc in
                 NavigationLink {
                     EditIncomeView(income: inc)
                 } label: {
                     HStack(alignment: .center) {
-                        VStack(alignment: .leading) {
+                        Label {
                             Text(inc.title!)
                                 .font(Font.custom("Fonzie", size: 25))
+                        } icon: {
+                            Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
+                                .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
+                                .font(.system(size: 30))
+                        }
+                        Spacer()
+                        VStack(alignment: .trailing) {
+                            Text(calcTimeSince(date: inc.date!))
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.secondary)
                             Text("\(String(format: "%.2f", inc.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }
-                        Spacer()
-                        Text(calcTimeSince(date: inc.date!))
-                            .font(Font.custom("Fonzie", size: 15))
-                            .foregroundColor(.secondary)
                     }
                 }
             }
@@ -47,6 +65,7 @@ struct IncomeView: View {
         }
         .listStyle(.inset)
         .tint(Color("color4"))
+        .searchable(text: $searchText)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
@@ -59,7 +78,6 @@ struct IncomeView: View {
                 }
                 .sheet(isPresented: $addIncome) {
                     AddIncomeView()
-                        .presentationDetents([.fraction(0.5)])
                         .presentationDragIndicator(.visible)
                 }
             }
