@@ -39,6 +39,8 @@ struct MainView: View {
             }
             .padding()
             .navigationTitle("Transactions")
+            .tint(Color("color4"))
+            .font(Font.custom("Fonzie", size: 20))
         }
     }
 }

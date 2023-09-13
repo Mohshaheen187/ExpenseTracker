@@ -28,22 +28,25 @@ struct IncomeView: View {
                 NavigationLink {
                     EditIncomeView(income: inc)
                 } label: {
-                    HStack {
+                    HStack(alignment: .center) {
                         VStack(alignment: .leading) {
                             Text(inc.title!)
-                                .font(.title2)
-                                .bold()
+                                .font(Font.custom("Fonzie", size: 25))
                             Text("\(String(format: "%.2f", inc.amount))")
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.green)
                         }
                         Spacer()
                         Text(calcTimeSince(date: inc.date!))
+                            .font(Font.custom("Fonzie", size: 15))
+                            .foregroundColor(.secondary)
                     }
                 }
             }
             .onDelete(perform: deleteTransaction)
-            .tint(.black)
         }
         .listStyle(.inset)
+        .tint(Color("color4"))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()

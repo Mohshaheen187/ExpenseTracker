@@ -28,20 +28,25 @@ struct OutcomeView: View {
                 NavigationLink {
                     EditOutcomeView(outcome: out)
                 } label: {
-                    HStack {
+                    HStack(alignment: .center) {
                         VStack(alignment: .leading) {
                             Text(out.title!)
-                                .font(.title2)
-                                .bold()
+                                .font(Font.custom("Fonzie", size: 25))
                             Text("\(String(format: "%.2f", out.amount))")
+                                .font(Font.custom("Fonzie", size: 15))
+                                .foregroundColor(.red)
                         }
                         Spacer()
                         Text(calcTimeSince(date: out.date!))
+                            .font(Font.custom("Fonzie", size: 15))
+                            .foregroundColor(.secondary)
                     }
                 }
             }
+            .onDelete(perform: deleteTransaction)
         }
         .listStyle(.inset)
+        .tint(Color("color4"))
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
@@ -58,6 +63,13 @@ struct OutcomeView: View {
                         .presentationDragIndicator(.visible)
                 }
             }
+        }
+    }
+    
+    private func deleteTransaction(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { outcome[$0] }.forEach(moc.delete)
+            DataController().saveTransaction(context: moc)
         }
     }
 }

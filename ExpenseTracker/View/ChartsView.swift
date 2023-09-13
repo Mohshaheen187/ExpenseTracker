@@ -17,7 +17,7 @@ struct ChartsView: View {
             .navigationTitle("Charts")
         }
         .tint(Color("color4"))
-        .colorMultiply(Color("color1"))
+        .font(Font.custom("Fonzie", size: 20))
     }
 }
 

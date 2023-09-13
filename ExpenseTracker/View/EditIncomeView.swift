@@ -25,13 +25,13 @@ struct EditIncomeView: View {
             VStack(spacing: 25) {
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Title")
-                        .font(.headline)
                         .foregroundColor(.secondary)
+                        .bold()
                     TextField("\(income.title!)", text: $title, axis: .vertical)
                         .padding(12)
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
+                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
                                 .opacity(0.5)
                         }
                 }
@@ -39,14 +39,14 @@ struct EditIncomeView: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Amount")
-                        .font(.headline)
                         .foregroundColor(.secondary)
+                        .bold()
                     TextField("\(income.amount)", value: $amount, formatter: NumberFormatter())
                         .keyboardType(.decimalPad)
                         .padding(12)
                         .overlay {
                             RoundedRectangle(cornerRadius: 5)
-                                .stroke(Color.black, style: StrokeStyle(lineWidth: 1))
+                                .stroke(Color("color4"), style: StrokeStyle(lineWidth: 2))
                                 .opacity(0.5)
                         }
                 }
@@ -54,9 +54,10 @@ struct EditIncomeView: View {
                 
                 VStack(alignment: .leading, spacing: 0) {
                     Text("Date")
-                        .font(.headline)
                         .foregroundColor(.secondary)
+                        .bold()
                     DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
+                        .font(Font.custom("Fonzie", size: 18))
                 }
                 .padding([.leading, .trailing])
                 
@@ -76,6 +77,8 @@ struct EditIncomeView: View {
                 amount = income.amount
                 date = income.date!
             }
+            .tint(Color("color4"))
+            .font(Font.custom("Fonzie", size: 20))
         }
     }
 }

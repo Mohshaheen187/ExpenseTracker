@@ -25,6 +25,7 @@ struct TabViews: View {
                     Label("Charts", systemImage: "rectangle.3.group")
                 }
         }
+        .tint(Color("color4"))
     }
 }
 
