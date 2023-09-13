@@ -20,12 +20,13 @@ struct AddOutcomeView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
+    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
             VStack {
-                newOutcomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
+                newOutcomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory, selectedCurrency: $selectedCurrency)
             }
             .navigationTitle("Outcome stream")
             .toolbar {
@@ -81,6 +82,7 @@ struct newOutcomeComponents : View {
     @Binding var date : Date
     
     @Binding var selectedCategory : Category
+    @Binding var selectedCurrency : Currency
     
     //MARK: BODY
     var body: some View {

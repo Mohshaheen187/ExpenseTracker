@@ -20,12 +20,13 @@ struct AddIncomeView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
+    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
             VStack {
-                newIncomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
+                newIncomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory, selectedCurrency: $selectedCurrency)
             }
             .navigationTitle("Income stream")
             .toolbar {
@@ -81,6 +82,7 @@ struct newIncomeComponents : View {
     @Binding var date : Date
     
     @Binding var selectedCategory : Category
+    @Binding var selectedCurrency : Currency
     
     //MARK: BODY
     var body: some View {
@@ -108,6 +110,15 @@ struct newIncomeComponents : View {
                             Image(systemName: category.imageName)
                                 .foregroundColor(category.imageColor)
                         }
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
+            
+            Section("Currency") {
+                Picker("Select the currency", selection: $selectedCurrency) {
+                    ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                        Text(currency.rawValue)
                     }
                 }
                 .pickerStyle(.navigationLink)

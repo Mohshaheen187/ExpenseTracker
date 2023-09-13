@@ -107,9 +107,9 @@
 			isa = PBXGroup;
 			children = (
 				6AEB80B92AB1F1F50075B4EB /* Category.swift */,
+				6A68344B2AB27DB2008C2A3D /* Currency.swift */,
 				6AC14AB02AB0C7AA00E38074 /* ExpensesModel.xcdatamodeld */,
 				6AC14AB32AB0C8D000E38074 /* DataController.swift */,
-				6A68344B2AB27DB2008C2A3D /* Currency.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

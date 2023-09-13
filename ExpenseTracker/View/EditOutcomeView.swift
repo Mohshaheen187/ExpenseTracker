@@ -20,6 +20,7 @@ struct EditOutcomeView: View {
     var outcome: FetchedResults<Outcome>.Element
     
     @State private var selectedCategory : Category = .car
+    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
@@ -48,6 +49,15 @@ struct EditOutcomeView: View {
                                 Image(systemName: category.imageName)
                                     .foregroundColor(category.imageColor)
                             }
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                }
+                
+                Section("Currency") {
+                    Picker("Select the currency", selection: $selectedCurrency) {
+                        ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                            Text(currency.rawValue)
                         }
                     }
                     .pickerStyle(.navigationLink)
