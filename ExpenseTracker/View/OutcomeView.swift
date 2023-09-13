@@ -59,7 +59,7 @@ struct OutcomeView: View {
                 }
                 .sheet(isPresented: $addOutcome) {
                     AddOutcomeView()
-                        .presentationDetents([.fraction(0.75)])
+                        .presentationDetents([.fraction(0.5)])
                         .presentationDragIndicator(.visible)
                 }
             }

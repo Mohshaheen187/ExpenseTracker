@@ -59,7 +59,7 @@ struct IncomeView: View {
                 }
                 .sheet(isPresented: $addIncome) {
                     AddIncomeView()
-                        .presentationDetents([.fraction(0.75)])
+                        .presentationDetents([.fraction(0.5)])
                         .presentationDragIndicator(.visible)
                 }
             }
