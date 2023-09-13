@@ -21,10 +21,22 @@ struct IncomeView: View {
     
     @State private var addIncome : Bool = false
     
+    @State private var searchText : String = ""
+    
+    var filteredIncome : [Income] {
+        if searchText.isEmpty {
+            return Array(income)
+        } else {
+            return income.filter { inc in
+                inc.title?.localizedCaseInsensitiveContains(searchText) == true
+            }
+        }
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
-            ForEach(income) { inc in
+            ForEach(filteredIncome) { inc in
                 NavigationLink {
                     EditIncomeView(income: inc)
                 } label: {
@@ -49,6 +61,7 @@ struct IncomeView: View {
         }
         .listStyle(.inset)
         .tint(Color("color4"))
+        .searchable(text: $searchText)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()

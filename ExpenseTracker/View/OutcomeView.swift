@@ -21,10 +21,22 @@ struct OutcomeView: View {
     
     @State private var addOutcome : Bool = false
     
+    @State private var searchText : String = ""
+    
+    var filteredOutcome : [Outcome] {
+        if searchText.isEmpty {
+            return Array(outcome)
+        } else {
+            return outcome.filter { inc in
+                inc.title?.localizedCaseInsensitiveContains(searchText) == true
+            }
+        }
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
-            ForEach(outcome) { out in
+            ForEach(filteredOutcome) { out in
                 NavigationLink {
                     EditOutcomeView(outcome: out)
                 } label: {
@@ -49,6 +61,7 @@ struct OutcomeView: View {
         }
         .listStyle(.inset)
         .tint(Color("color4"))
+        .searchable(text: $searchText)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
