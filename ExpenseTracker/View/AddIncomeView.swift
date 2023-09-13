@@ -33,16 +33,23 @@ struct AddIncomeView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         if title.isEmpty {
-                            presentAlert = AlertsHandling(id: 1, title: "Something wrong!", message: "Please check the information again")
+                            presentAlert = AlertsHandling(id: 1, title: "Something wrong!😩", message: "Please check the information again.")
                         } else {
+                            
+                            presentAlert = AlertsHandling(id: 2, title: "Congratulations🥳", message: "Your transaction saved successfully!")
+                            
                             DataController().addIncome(title: title, amount: amount, date: date, context: moc)
-                            DataController().saveTransaction(context: moc)
+                            
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                dismiss()
+                            }
                         }
                     }
                     .alert(item: $presentAlert) { alert in
                         Alert(
                             title: Text(alert.title),
-                            message: Text(alert.message)
+                            message: Text(alert.message),
+                            dismissButton: .default(Text("Okay"))
                         )
                     }
                 }
