@@ -25,7 +25,7 @@ struct AddIncomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                newIncomeComponents(title: $title, amount: $amount, date: $date)
+                newIncomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
             }
             .navigationTitle("Income stream")
             .toolbar {
@@ -80,7 +80,7 @@ struct newIncomeComponents : View {
     @Binding var amount : Double
     @Binding var date : Date
     
-    @State private var selectedCategory : Category = .health
+    @Binding var selectedCategory : Category
     
     //MARK: BODY
     var body: some View {

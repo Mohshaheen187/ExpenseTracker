@@ -25,7 +25,7 @@ struct AddOutcomeView: View {
     var body: some View {
         NavigationStack {
             VStack {
-                newOutcomeComponents(title: $title, amount: $amount, date: $date)
+                newOutcomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
             }
             .navigationTitle("Outcome stream")
             .toolbar {
@@ -80,7 +80,7 @@ struct newOutcomeComponents : View {
     @Binding var amount : Double
     @Binding var date : Date
     
-    @State private var selectedCategory : Category = .health
+    @Binding var selectedCategory : Category
     
     //MARK: BODY
     var body: some View {
