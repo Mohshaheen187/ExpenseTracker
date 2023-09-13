@@ -43,6 +43,7 @@ struct OutcomeView: View {
                     HStack(alignment: .center) {
                         Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
                             .foregroundColor(Category(rawValue: out.category ?? "")?.imageColor ?? .gray)
+                            .font(.system(size: 30))
                         VStack(alignment: .leading) {
                             Text(out.title!)
                                 .font(Font.custom("Fonzie", size: 25))
