@@ -57,7 +57,7 @@ struct EditOutcomeView: View {
                         .foregroundColor(.secondary)
                         .bold()
                     DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
-                        .font(Font.custom("Fonzie", size: 18))
+                        .font(Font.custom("Fonzie", size: 15))
                 }
                 .padding([.leading, .trailing])
                 

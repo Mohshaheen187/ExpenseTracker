@@ -85,8 +85,8 @@ struct newOutcomeComponents : View {
         VStack(spacing: 25) {
             VStack(alignment: .leading, spacing: 0) {
                 Text("Title")
-                    .font(.headline)
                     .foregroundColor(.secondary)
+                    .bold()
                 TextField("Where did you get the money?", text: $title, axis: .vertical)
                     .padding(12)
                     .overlay {
@@ -99,8 +99,8 @@ struct newOutcomeComponents : View {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text("Amount")
-                    .font(.headline)
                     .foregroundColor(.secondary)
+                    .bold()
                 TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
                     .keyboardType(.decimalPad)
                     .padding(12)
@@ -114,13 +114,16 @@ struct newOutcomeComponents : View {
             
             VStack(alignment: .leading, spacing: 0) {
                 Text("Date")
-                    .font(.headline)
                     .foregroundColor(.secondary)
+                    .bold()
                 DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
+                    .font(Font.custom("Fonzie", size: 15))
             }
             .padding([.leading, .trailing])
             
             Spacer()
         }
+        .tint(Color("color4"))
+        .font(Font.custom("Fonzie", size: 20))
     }
 }
