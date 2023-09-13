@@ -20,7 +20,7 @@
 		6AC14AB92AB0E08D00E38074 /* IncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC14AB82AB0E08D00E38074 /* IncomeView.swift */; };
 		6AC14ABB2AB1010C00E38074 /* EditIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC14ABA2AB1010C00E38074 /* EditIncomeView.swift */; };
 		6ACED8AD2AB19FD000FEF6FE /* AlertsHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8AC2AB19FD000FEF6FE /* AlertsHandling.swift */; };
-		6ACED8AF2AB1A1A700FEF6FE /* AddNewIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8AE2AB1A1A700FEF6FE /* AddNewIncomeView.swift */; };
+		6ACED8AF2AB1A1A700FEF6FE /* AddIncomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8AE2AB1A1A700FEF6FE /* AddIncomeView.swift */; };
 		6ACED8B12AB1A22C00FEF6FE /* OutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B02AB1A22C00FEF6FE /* OutcomeView.swift */; };
 		6ACED8B32AB1A91B00FEF6FE /* EditOutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */; };
 		6ACED8B52AB1AA0500FEF6FE /* AddOutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B42AB1AA0500FEF6FE /* AddOutcomeView.swift */; };
@@ -42,7 +42,7 @@
 		6AC14AB82AB0E08D00E38074 /* IncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeView.swift; sourceTree = "<group>"; };
 		6AC14ABA2AB1010C00E38074 /* EditIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditIncomeView.swift; sourceTree = "<group>"; };
 		6ACED8AC2AB19FD000FEF6FE /* AlertsHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertsHandling.swift; sourceTree = "<group>"; };
-		6ACED8AE2AB1A1A700FEF6FE /* AddNewIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewIncomeView.swift; sourceTree = "<group>"; };
+		6ACED8AE2AB1A1A700FEF6FE /* AddIncomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddIncomeView.swift; sourceTree = "<group>"; };
 		6ACED8B02AB1A22C00FEF6FE /* OutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutcomeView.swift; sourceTree = "<group>"; };
 		6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOutcomeView.swift; sourceTree = "<group>"; };
 		6ACED8B42AB1AA0500FEF6FE /* AddOutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOutcomeView.swift; sourceTree = "<group>"; };
@@ -125,7 +125,7 @@
 				6ACED8B02AB1A22C00FEF6FE /* OutcomeView.swift */,
 				6AC14ABA2AB1010C00E38074 /* EditIncomeView.swift */,
 				6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */,
-				6ACED8AE2AB1A1A700FEF6FE /* AddNewIncomeView.swift */,
+				6ACED8AE2AB1A1A700FEF6FE /* AddIncomeView.swift */,
 				6ACED8B42AB1AA0500FEF6FE /* AddOutcomeView.swift */,
 			);
 			path = View;
@@ -222,7 +222,7 @@
 				6AC14AB42AB0C8D000E38074 /* DataController.swift in Sources */,
 				6AC14ABB2AB1010C00E38074 /* EditIncomeView.swift in Sources */,
 				6AC14AB22AB0C7AA00E38074 /* ExpensesModel.xcdatamodeld in Sources */,
-				6ACED8AF2AB1A1A700FEF6FE /* AddNewIncomeView.swift in Sources */,
+				6ACED8AF2AB1A1A700FEF6FE /* AddIncomeView.swift in Sources */,
 				6A28A8B52AB11F4500EFFC22 /* TabViews.swift in Sources */,
 				6AC14AA02AB0C6BE00E38074 /* ExpenseTrackerApp.swift in Sources */,
 			);

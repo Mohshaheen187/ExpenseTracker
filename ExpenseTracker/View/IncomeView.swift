@@ -55,7 +55,7 @@ struct IncomeView: View {
                     Image(systemName: "plus.circle.fill")
                 }
                 .sheet(isPresented: $addIncome) {
-                    AddNewIncomeView()
+                    AddIncomeView()
                         .presentationDetents([.fraction(0.75)])
                         .presentationDragIndicator(.visible)
                 }
