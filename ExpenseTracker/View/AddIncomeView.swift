@@ -16,6 +16,9 @@ struct AddIncomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
+    @State private var isIncomeAdded : Bool = false
+    
+    @State private var presentAlert : AlertsHandling?
     
     //MARK: BODY
     var body: some View {
@@ -25,6 +28,31 @@ struct AddIncomeView: View {
             }
             .navigationTitle("Add New Income")
             .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button("Add") {
+                        if title.isEmpty {
+                            presentAlert = AlertsHandling(id: 1, title: "Something wrong!", message: "Please check the information again")
+                        } else {
+                            DataController().addIncome(title: title, amount: amount, date: date, context: moc)
+                            DataController().saveTransaction(context: moc)
+                        }
+                    }
+                    .alert(item: $presentAlert) { alert in
+                        Alert(
+                            title: Text(alert.title),
+                            message: Text(alert.message)
+                        )
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
+            }
         }
     }
 }
