@@ -18,6 +18,7 @@ struct MainView: View {
     @Environment (\.managedObjectContext) var moc
     @State private var addNewIncome : Bool = false
     @State private var selectedTransactionType : TransactionType = .income
+    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
@@ -39,6 +40,22 @@ struct MainView: View {
             }
             .padding()
             .navigationTitle("Transactions")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Picker(selection: $selectedCurrency) {
+                        ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                            Button(currency.iso) {
+                                
+                            }
+                            .tag(currency.rawValue)
+                        }
+                    } label: {
+                        Text("Cuurencies")
+                    }
+                    .tint(Color("color4"))
+                    .font(Font.custom("Fonzie", size: 20))
+                }
+            }
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }

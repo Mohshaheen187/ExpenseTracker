@@ -18,7 +18,6 @@ struct IncomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
-    @State private var currency : Currency = .aud
     
     @State private var addIncome : Bool = false
     
@@ -55,7 +54,7 @@ struct IncomeView: View {
                             Text(calcTimeSince(date: inc.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(Currency(rawValue: inc.currency ?? "")?.iso ?? "Unkown") \(String(format: "%.2f", inc.amount))")
+                            Text("\(String(format: "%.2f", inc.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }
@@ -68,9 +67,11 @@ struct IncomeView: View {
         .tint(Color("color4"))
         .searchable(text: $searchText)
         .toolbar {
+            
             ToolbarItem(placement: .navigationBarLeading) {
                 EditButton()
             }
+            
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
                     addIncome = true
@@ -90,12 +91,6 @@ struct IncomeView: View {
             offsets.map { income[$0] }.forEach(moc.delete)
             DataController().saveTransaction(context: moc)
         }
-    }
-}
-
-struct IncomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        IncomeView()
     }
 }
 
