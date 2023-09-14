@@ -16,7 +16,4 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="title" optional="YES" attributeType="String"/>
     </entity>
-    <entity name="UserSettings" representedClassName="UserSettings" syncable="YES" codeGenerationType="class">
-        <attribute name="selectedCurrency" optional="YES" attributeType="String"/>
-    </entity>
 </model>

@@ -18,7 +18,9 @@ struct MainView: View {
     @Environment (\.managedObjectContext) var moc
     @State private var addNewIncome : Bool = false
     @State private var selectedTransactionType : TransactionType = .income
-    @State private var selectedCurrency : Currency = .aud
+    @AppStorage("selectedCurrency") private var selectedCurrency: Currency = .aud // Use AppStorage
+    
+    
     
     //MARK: BODY
     var body: some View {
@@ -44,10 +46,8 @@ struct MainView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Picker(selection: $selectedCurrency) {
                         ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
-                            Button(currency.iso) {
-                                
-                            }
-                            .tag(currency.rawValue)
+                            Text(currency.iso)
+                                .tag(currency)
                         }
                     } label: {
                         Text("Cuurencies")

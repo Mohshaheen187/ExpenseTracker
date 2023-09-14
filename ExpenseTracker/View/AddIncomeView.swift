@@ -20,7 +20,6 @@ struct AddIncomeView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
-    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
