@@ -20,6 +20,7 @@ struct EditOutcomeView: View {
     var outcome: FetchedResults<Outcome>.Element
     
     @State private var selectedCategory : Category = .car
+    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
@@ -52,13 +53,22 @@ struct EditOutcomeView: View {
                     }
                     .pickerStyle(.navigationLink)
                 }
+                
+                Section("Currency") {
+                    Picker("Select the currency", selection: $selectedCurrency) {
+                        ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                            Text(currency.rawValue)
+                        }
+                    }
+                    .pickerStyle(.navigationLink)
+                }
             }
             .navigationTitle("Edit Transaction")
             .navigationBarTitleDisplayMode(.automatic)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Done") {
-                        DataController().editOutcomeTransaction(outcomeTrans: outcome, title: title, amount: amount, date: date, category: selectedCategory.rawValue, context:  moc)
+                        DataController().editOutcomeTransaction(outcomeTrans: outcome, title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.rawValue, context:  moc)
                         dismiss()
                     }
                 }
