@@ -114,6 +114,15 @@ struct newOutcomeComponents : View {
                 }
                 .pickerStyle(.navigationLink)
             }
+            
+            Section("Currency") {
+                Picker("Select the currency", selection: $selectedCurrency) {
+                    ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                        Text(currency.rawValue)
+                    }
+                }
+                .pickerStyle(.navigationLink)
+            }
         }
         .tint(Color("color4"))
         .font(Font.custom("Fonzie", size: 20))

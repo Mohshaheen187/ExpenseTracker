@@ -18,6 +18,7 @@ struct IncomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
+    @State private var currency : Currency = .aud
     
     @State private var addIncome : Bool = false
     
@@ -54,7 +55,7 @@ struct IncomeView: View {
                             Text(calcTimeSince(date: inc.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(String(format: "%.2f", inc.amount))")
+                            Text("\(Currency(rawValue: inc.currency ?? "")?.iso ?? "Unkown") \(String(format: "%.2f", inc.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }
