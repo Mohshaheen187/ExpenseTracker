@@ -18,6 +18,7 @@ struct OutcomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
+    @Binding var outcomeBalance: Double
     
     @State private var addOutcome : Bool = false
     
@@ -33,9 +34,16 @@ struct OutcomeView: View {
         }
     }
     
+    var totalOutcomeBalance: Double {
+        let existingAmounts = filteredOutcome.reduce(0.0) { $0 + $1.amount }
+        outcomeBalance = existingAmounts + amount
+        return outcomeBalance
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
+            Text("Total outcome balance: \(String(format: "%.2f", totalOutcomeBalance))")
             ForEach(filteredOutcome) { out in
                 NavigationLink {
                     EditOutcomeView(outcome: out)
