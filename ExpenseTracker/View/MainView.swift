@@ -21,6 +21,8 @@ struct MainView: View {
     @State private var incomeBalance: Double = 0.0
     @State private var outcomeBalance: Double = 0.0
     
+    @State private var totalBalance : Double = 0.0
+    
     //MARK: BODY
     var body: some View {
         NavigationStack {
@@ -40,7 +42,7 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Balance: \(String(format: "%.2f", updateBalance()))")
+            .navigationTitle("Balance: \(String(format: "%.2f", incomeBalance - outcomeBalance))")
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
