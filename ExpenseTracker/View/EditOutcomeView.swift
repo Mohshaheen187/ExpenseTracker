@@ -44,7 +44,7 @@ struct EditOutcomeView: View {
                     Picker("Select a category", selection: $selectedCategory) {
                         ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
                             Label {
-                                Text(category.rawValue.capitalized)
+                                Text(category.description)
                             } icon: {
                                 Image(systemName: category.imageName)
                                     .foregroundColor(category.imageColor)
