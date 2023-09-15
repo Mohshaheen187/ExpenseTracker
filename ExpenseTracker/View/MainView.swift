@@ -38,7 +38,7 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Transactions")
+            .navigationTitle("Balance: 300")
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
