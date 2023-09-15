@@ -20,13 +20,12 @@ struct AddIncomeView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
-    @State private var selectedCurrency : Currency = .aud
     
     //MARK: BODY
     var body: some View {
         NavigationStack {
             VStack {
-                newIncomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory, selectedCurrency: $selectedCurrency)
+                newIncomeComponents(title: $title, amount: $amount, date: $date, selectedCategory: $selectedCategory)
             }
             .navigationTitle("Income stream")
             .toolbar {
@@ -39,7 +38,7 @@ struct AddIncomeView: View {
                             
                             presentAlert = AlertsHandling(id: 2, title: "Congratulations🥳", message: "Your transaction saved successfully!")
                             
-                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.rawValue, context: moc)
+                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             
                             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                                 dismiss()
@@ -82,7 +81,6 @@ struct newIncomeComponents : View {
     @Binding var date : Date
     
     @Binding var selectedCategory : Category
-    @Binding var selectedCurrency : Currency
     
     //MARK: BODY
     var body: some View {
@@ -110,15 +108,6 @@ struct newIncomeComponents : View {
                             Image(systemName: category.imageName)
                                 .foregroundColor(category.imageColor)
                         }
-                    }
-                }
-                .pickerStyle(.navigationLink)
-            }
-            
-            Section("Currency") {
-                Picker("Select the currency", selection: $selectedCurrency) {
-                    ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
-                        Text(currency.rawValue)
                     }
                 }
                 .pickerStyle(.navigationLink)
