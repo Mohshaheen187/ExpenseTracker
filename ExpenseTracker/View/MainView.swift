@@ -40,10 +40,14 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Balance: \(String(format: "%.2f", incomeBalance - outcomeBalance))")
+            .navigationTitle("Balance: \(String(format: "%.2f", updateBalance()))")
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
+    }
+    
+    func updateBalance() -> Double {
+        return incomeBalance - outcomeBalance
     }
 }
 

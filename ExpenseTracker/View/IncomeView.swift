@@ -55,7 +55,7 @@ struct IncomeView: View {
                         } icon: {
                             Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
                                 .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
-                                .font(.system(size: 30))
+                                .font(.system(size: 25))
                         }
                         Spacer()
                         VStack(alignment: .trailing) {

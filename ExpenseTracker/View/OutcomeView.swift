@@ -55,7 +55,7 @@ struct OutcomeView: View {
                         } icon: {
                             Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
                                 .foregroundColor(Category(rawValue: out.category!)?.imageColor ?? .gray)
-                                .font(.system(size: 30))
+                                .font(.system(size: 25))
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
@@ -64,7 +64,7 @@ struct OutcomeView: View {
                                 .foregroundColor(.secondary)
                             Text("\(String(format: "%.2f", out.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
-                                .foregroundColor(.green)
+                                .foregroundColor(.red)
                         }
                     }
                 }
