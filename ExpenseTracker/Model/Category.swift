@@ -21,6 +21,41 @@ enum Category: String, CaseIterable {
     case shopping
     case gift
     case phone
+    case house
+    case personalCare
+    
+    var description: String {
+        switch self {
+        case .health:
+            return "Health"
+        case .car:
+            return "Car"
+        case .food:
+            return "Food"
+        case .transport:
+            return "Transport"
+        case .education:
+            return "Education"
+        case .groceries:
+            return "Groceries"
+        case .sport:
+            return "Sports"
+        case .gym:
+            return "Gym"
+        case .money:
+            return "Money"
+        case .shopping:
+            return "Online Shopping"
+        case .gift:
+            return "Gifts"
+        case .phone:
+            return "Communication"
+        case .house:
+            return "Home Stuff"
+        case .personalCare:
+            return "Personal Care"
+        }
+    }
     
     var imageName: String {
         switch self {
@@ -48,6 +83,10 @@ enum Category: String, CaseIterable {
             return "gift.fill"
         case .phone:
             return "phone.fill"
+        case .house:
+            return "house.fill"
+        case .personalCare:
+            return "figure.mind.and.body"
         }
     }
     
@@ -77,6 +116,10 @@ enum Category: String, CaseIterable {
             return Color.yellow
         case .phone:
             return Color.cyan
+        case .house:
+            return Color.brown
+        case .personalCare:
+            return Color.gray
         }
     }
 }

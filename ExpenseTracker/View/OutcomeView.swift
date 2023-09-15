@@ -18,6 +18,7 @@ struct OutcomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
+    @Binding var outcomeBalance: Double
     
     @State private var addOutcome : Bool = false
     
@@ -33,9 +34,16 @@ struct OutcomeView: View {
         }
     }
     
+    var totalOutcomeBalance: Double {
+        let existingAmounts = filteredOutcome.reduce(0.0) { $0 + $1.amount }
+        outcomeBalance = existingAmounts + amount
+        return outcomeBalance
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
+            Text("Total outcome balance: \(String(format: "%.2f", totalOutcomeBalance))")
             ForEach(filteredOutcome) { out in
                 NavigationLink {
                     EditOutcomeView(outcome: out)
@@ -47,7 +55,7 @@ struct OutcomeView: View {
                         } icon: {
                             Image(systemName: Category(rawValue: out.category ?? "")?.imageName ?? "questionmark.circle")
                                 .foregroundColor(Category(rawValue: out.category!)?.imageColor ?? .gray)
-                                .font(.system(size: 30))
+                                .font(.system(size: 25))
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
@@ -56,7 +64,7 @@ struct OutcomeView: View {
                                 .foregroundColor(.secondary)
                             Text("\(String(format: "%.2f", out.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
-                                .foregroundColor(.green)
+                                .foregroundColor(.red)
                         }
                     }
                 }

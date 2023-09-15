@@ -18,7 +18,8 @@ struct IncomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
-    
+    @Binding var incomeBalance: Double
+
     @State private var addIncome : Bool = false
     
     @State private var searchText : String = ""
@@ -33,9 +34,16 @@ struct IncomeView: View {
         }
     }
     
+    var totalIncomeBalance: Double {
+        let existingAmounts = filteredIncome.reduce(0.0) { $0 + $1.amount }
+        incomeBalance = existingAmounts + amount
+        return incomeBalance
+    }
+    
     //MARK: BODY
     var body: some View {
         List {
+            Text("Total income balance: \(String(format: "%.2f", totalIncomeBalance))")
             ForEach(filteredIncome) { inc in
                 NavigationLink {
                     EditIncomeView(income: inc)
@@ -47,7 +55,7 @@ struct IncomeView: View {
                         } icon: {
                             Image(systemName: Category(rawValue: inc.category ?? "")?.imageName ?? "questionmark.circle")
                                 .foregroundColor(Category(rawValue: inc.category!)?.imageColor ?? .gray)
-                                .font(.system(size: 30))
+                                .font(.system(size: 25))
                         }
                         Spacer()
                         VStack(alignment: .trailing) {
@@ -93,4 +101,3 @@ struct IncomeView: View {
         }
     }
 }
-

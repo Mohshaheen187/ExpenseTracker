@@ -18,6 +18,10 @@ struct MainView: View {
     @Environment (\.managedObjectContext) var moc
     @State private var addNewIncome : Bool = false
     @State private var selectedTransactionType : TransactionType = .income
+    @State private var incomeBalance: Double = 0.0
+    @State private var outcomeBalance: Double = 0.0
+    
+    @State private var totalBalance : Double = 0.0
     
     //MARK: BODY
     var body: some View {
@@ -30,18 +34,22 @@ struct MainView: View {
                 .pickerStyle(.segmented)
                 
                 if selectedTransactionType == .income {
-                    IncomeView()
+                    IncomeView(incomeBalance: $incomeBalance)
                 } else {
-                    OutcomeView()
+                    OutcomeView(outcomeBalance: $outcomeBalance)
                 }
                 
                 Spacer()
             }
             .padding()
-            .navigationTitle("Transactions")
+            .navigationTitle("Balance: \(String(format: "%.2f", incomeBalance - outcomeBalance))")
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
+    }
+    
+    func updateBalance() -> Double {
+        return incomeBalance - outcomeBalance
     }
 }
 
