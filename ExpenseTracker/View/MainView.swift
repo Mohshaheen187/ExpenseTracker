@@ -42,7 +42,7 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Balance: \(String(format: "%.2f", incomeBalance - outcomeBalance))")
+            .navigationTitle("Transactions")
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
