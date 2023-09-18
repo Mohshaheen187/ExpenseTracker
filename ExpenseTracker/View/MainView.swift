@@ -51,16 +51,28 @@ struct MainView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Menu {
                         Section {
-                            Button("Select", action: selectTransaction)
+                            Button {
+                                print("Selected")
+                            } label: {
+                                Label("Select", systemImage: "circle")
+                            }
+
+                            Button {
+                                print("Pressed")
+                            } label: {
+                                Label("Filter", systemImage: "square.grid.3x1.below.line.grid.1x2")
+                            }
                         }
                         Section {
-                            Button("Add") {
+                            Button {
                                 newTransactionSheet = true
                                 if selectedTransactionType == .income {
                                     navigationTitle = "Income stream"
                                 } else {
                                     navigationTitle = "Outcome stream"
                                 }
+                            } label: {
+                                Label("Add transaction", systemImage: "plus")
                             }
                         }
                     } label: {

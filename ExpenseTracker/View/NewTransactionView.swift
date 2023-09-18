@@ -31,11 +31,13 @@ struct NewTransactionView: View {
                 List {
                     Section("Title") {
                         TextField("Where did you get the money?", text: $title, axis: .vertical)
+                            .scrollDismissesKeyboard(.interactively)
                     }
                     
                     Section("Amount") {
                         TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
                             .keyboardType(.decimalPad)
+                            .scrollDismissesKeyboard(.interactively)
                     }
                     
                     Section("Date") {
