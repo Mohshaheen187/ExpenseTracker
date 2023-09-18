@@ -24,6 +24,12 @@ struct TabViews: View {
                 .tabItem {
                     Label("Charts", systemImage: "rectangle.3.group")
                 }
+            
+            Preferences()
+                .tag(3)
+                .tabItem {
+                    Label("Preferences", systemImage: "gear")
+                }
         }
         .tint(Color("color4"))
     }
