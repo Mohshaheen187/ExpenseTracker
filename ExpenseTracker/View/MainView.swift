@@ -49,34 +49,15 @@ struct MainView: View {
             .toolbar {
                 
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Menu {
-                        Section {
-                            Button {
-                                print("Selected")
-                            } label: {
-                                Label("Select", systemImage: "circle")
-                            }
-
-                            Button {
-                                print("Pressed")
-                            } label: {
-                                Label("Filter", systemImage: "square.grid.3x1.below.line.grid.1x2")
-                            }
-                        }
-                        Section {
-                            Button {
-                                newTransactionSheet = true
-                                if selectedTransactionType == .income {
-                                    navigationTitle = "Income stream"
-                                } else {
-                                    navigationTitle = "Outcome stream"
-                                }
-                            } label: {
-                                Label("Add transaction", systemImage: "plus")
-                            }
+                    Button {
+                        newTransactionSheet = true
+                        if selectedTransactionType == .income {
+                            navigationTitle = "Income stream"
+                        } else {
+                            navigationTitle = "Outcome stream"
                         }
                     } label: {
-                        Image(systemName: "ellipsis.circle")
+                        Label("Add transaction", systemImage: "plus.circle.fill")
                     }
                     .sheet(isPresented: $newTransactionSheet) {
                         NewTransactionView(transactionType: $selectedTransactionType, navigationTitle: $navigationTitle)
@@ -91,10 +72,6 @@ struct MainView: View {
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
-    }
-    
-    func selectTransaction() {
-        print("Selected")
     }
 }
 
