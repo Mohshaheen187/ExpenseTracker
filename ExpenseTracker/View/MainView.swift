@@ -17,11 +17,14 @@ struct MainView: View {
     //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
     @State private var addNewIncome : Bool = false
+    @State private var addNewOutcome : Bool = false
     @State private var selectedTransactionType : TransactionType = .income
     @State private var incomeBalance: Double = 0.0
     @State private var outcomeBalance: Double = 0.0
+    @State private var newTransactionSheet : Bool = false
     
     @State private var totalBalance : Double = 0.0
+    @State private var navigationTitle : String = ""
     
     //MARK: BODY
     var body: some View {
@@ -42,7 +45,29 @@ struct MainView: View {
                 Spacer()
             }
             .padding()
-            .navigationTitle("Balance: \(String(format: "%.2f", incomeBalance - outcomeBalance))")
+            .navigationTitle("Transactions")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        newTransactionSheet = true
+                        if selectedTransactionType == .income {
+                            navigationTitle = "Income stream"
+                        } else {
+                            navigationTitle = "Outcome stream"
+                        }
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                    }
+                    .sheet(isPresented: $newTransactionSheet) {
+                        NewTransactionView(transactionType: $selectedTransactionType, navigationTitle: $navigationTitle)
+                            .presentationDragIndicator(.visible)
+                    }
+                }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    EditButton()
+                }
+            }
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }

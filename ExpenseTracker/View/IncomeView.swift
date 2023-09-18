@@ -18,9 +18,8 @@ struct IncomeView: View {
     @State private var title : String = ""
     @State private var amount : Double = 0.0
     @State private var date : Date = Date()
+    
     @Binding var incomeBalance: Double
-
-    @State private var addIncome : Bool = false
     
     @State private var searchText : String = ""
     
@@ -62,7 +61,7 @@ struct IncomeView: View {
                             Text(calcTimeSince(date: inc.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(String(format: "%.2f", inc.amount))")
+                            Text("\(String(format: "%.2f", inc.amount) + inc.currency!)")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }
@@ -74,24 +73,6 @@ struct IncomeView: View {
         .listStyle(.inset)
         .tint(Color("color4"))
         .searchable(text: $searchText)
-        .toolbar {
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                EditButton()
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    addIncome = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                }
-                .sheet(isPresented: $addIncome) {
-                    AddIncomeView()
-                        .presentationDragIndicator(.visible)
-                }
-            }
-        }
     }
     
     private func deleteTransaction(offsets: IndexSet) {

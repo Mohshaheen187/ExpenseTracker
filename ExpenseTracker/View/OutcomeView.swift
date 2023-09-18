@@ -20,8 +20,6 @@ struct OutcomeView: View {
     @State private var date : Date = Date()
     @Binding var outcomeBalance: Double
     
-    @State private var addOutcome : Bool = false
-    
     @State private var searchText : String = ""
     
     var filteredOutcome : [Outcome] {
@@ -62,7 +60,7 @@ struct OutcomeView: View {
                             Text(calcTimeSince(date: out.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(String(format: "%.2f", out.amount))")
+                            Text("\(String(format: "%.2f", out.amount) + out.currency!)")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.red)
                         }
@@ -74,24 +72,6 @@ struct OutcomeView: View {
         .listStyle(.inset)
         .tint(Color("color4"))
         .searchable(text: $searchText)
-        .toolbar {
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                EditButton()
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    addOutcome = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                }
-                .sheet(isPresented: $addOutcome) {
-                    AddOutcomeView()
-                        .presentationDragIndicator(.visible)
-                }
-            }
-        }
     }
     
     private func deleteTransaction(offsets: IndexSet) {
