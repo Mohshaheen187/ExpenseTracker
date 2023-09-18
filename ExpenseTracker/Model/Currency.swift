@@ -47,7 +47,7 @@ enum Currency: String, CaseIterable {
         }
     }
     
-    var flag : String {
+    var countryFlag : String {
         switch self {
         case .usd:
             return "usa"
