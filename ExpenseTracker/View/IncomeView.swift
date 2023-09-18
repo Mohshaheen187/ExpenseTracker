@@ -74,24 +74,6 @@ struct IncomeView: View {
         .listStyle(.inset)
         .tint(Color("color4"))
         .searchable(text: $searchText)
-        .toolbar {
-            
-            ToolbarItem(placement: .navigationBarLeading) {
-                EditButton()
-            }
-            
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button {
-                    addIncome = true
-                } label: {
-                    Image(systemName: "plus.circle.fill")
-                }
-                .sheet(isPresented: $addIncome) {
-                    AddIncomeView()
-                        .presentationDragIndicator(.visible)
-                }
-            }
-        }
     }
     
     private func deleteTransaction(offsets: IndexSet) {
