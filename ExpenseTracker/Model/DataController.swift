@@ -54,20 +54,22 @@ class DataController : ObservableObject {
         saveTransaction(context: context)
     }
     
-    func editIncomeTransaction(incomeTrans: Income, title: String, amount: Double, date: Date, category: String, context: NSManagedObjectContext) {
+    func editIncomeTransaction(incomeTrans: Income, title: String, amount: Double, date: Date, category: String, currency: String, context: NSManagedObjectContext) {
         incomeTrans.title = title
         incomeTrans.amount = amount
         incomeTrans.date = date
         incomeTrans.category = category
+        incomeTrans.currency = currency
         
         saveTransaction(context: context)
     }
     
-    func editOutcomeTransaction(outcomeTrans: Outcome, title: String, amount: Double, date: Date, category: String, context: NSManagedObjectContext) {
+    func editOutcomeTransaction(outcomeTrans: Outcome, title: String, amount: Double, date: Date, category: String, currency: String, context: NSManagedObjectContext) {
         outcomeTrans.title = title
         outcomeTrans.amount = amount
         outcomeTrans.date = date
         outcomeTrans.category = category
+        outcomeTrans.currency = currency
         
         saveTransaction(context: context)
     }
