@@ -20,6 +20,7 @@ struct NewTransactionView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
+    @State private var selectedCurrency : Currency = .aud
     @Binding var transactionType : TransactionType
     
     @Binding var navigationTitle : String
@@ -55,6 +56,16 @@ struct NewTransactionView: View {
                         }
                         .pickerStyle(.navigationLink)
                     }
+                    
+                    Section("Currecny") {
+                        Picker("Select a currency", selection: $selectedCurrency) {
+                            ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
+                                Text(currency.iso)
+                                    .tag(currency)
+                            }
+                        }
+                        .pickerStyle(.navigationLink)
+                    }
                 }
             }
             .navigationTitle(navigationTitle)
@@ -62,10 +73,10 @@ struct NewTransactionView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         if transactionType == .income {
-                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
+                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
                             dismiss()
                         } else {
-                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
+                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
                             dismiss()
                         }
                     }

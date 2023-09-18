@@ -28,7 +28,7 @@ class DataController : ObservableObject {
         }
     }
     
-    func addIncome(title: String, amount: Double, date: Date, category: String, context: NSManagedObjectContext) {
+    func addIncome(title: String, amount: Double, date: Date, category: String, currency: String, context: NSManagedObjectContext) {
         let incomeTransaction = Income(context: context)
         
         incomeTransaction.id = UUID()
@@ -36,11 +36,12 @@ class DataController : ObservableObject {
         incomeTransaction.amount = amount
         incomeTransaction.date = date
         incomeTransaction.category = category
+        incomeTransaction.currency = currency
         
         saveTransaction(context: context)
     }
     
-    func addOutcome(title: String, amount: Double, date: Date, category: String, context: NSManagedObjectContext) {
+    func addOutcome(title: String, amount: Double, date: Date, category: String, currency: String, context: NSManagedObjectContext) {
         let outcomeTransaction = Outcome(context: context)
         
         outcomeTransaction.id = UUID()
@@ -48,6 +49,7 @@ class DataController : ObservableObject {
         outcomeTransaction.amount = amount
         outcomeTransaction.date = date
         outcomeTransaction.category = category
+        outcomeTransaction.currency = currency
         
         saveTransaction(context: context)
     }
