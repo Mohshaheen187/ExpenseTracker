@@ -47,16 +47,24 @@ struct MainView: View {
             .padding()
             .navigationTitle("Transactions")
             .toolbar {
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        newTransactionSheet = true
-                        if selectedTransactionType == .income {
-                            navigationTitle = "Income stream"
-                        } else {
-                            navigationTitle = "Outcome stream"
+                    Menu {
+                        Section {
+                            Button("Select", action: selectTransaction)
+                        }
+                        Section {
+                            Button("Add") {
+                                newTransactionSheet = true
+                                if selectedTransactionType == .income {
+                                    navigationTitle = "Income stream"
+                                } else {
+                                    navigationTitle = "Outcome stream"
+                                }
+                            }
                         }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: "ellipsis.circle")
                     }
                     .sheet(isPresented: $newTransactionSheet) {
                         NewTransactionView(transactionType: $selectedTransactionType, navigationTitle: $navigationTitle)
@@ -73,8 +81,8 @@ struct MainView: View {
         }
     }
     
-    func updateBalance() -> Double {
-        return incomeBalance - outcomeBalance
+    func selectTransaction() {
+        print("Selected")
     }
 }
 
