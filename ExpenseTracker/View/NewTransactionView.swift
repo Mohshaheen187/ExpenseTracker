@@ -70,6 +70,12 @@ struct NewTransactionView: View {
                         }
                     }
                 }
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button("Cancel") {
+                        dismiss()
+                    }
+                }
             }
         }
     }
