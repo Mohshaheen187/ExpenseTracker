@@ -19,7 +19,7 @@ struct TabViews: View {
                     Label("Dashboard", systemImage: "house")
                 }
             
-            InsightsView()
+            InsightsView(incomeChartViewModel: IncomeChartViewModel(incomes: []))
                 .tag(2)
                 .tabItem {
                     Label("Charts", systemImage: "chart.bar.xaxis")

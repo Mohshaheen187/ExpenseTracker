@@ -6,13 +6,30 @@
 //
 
 import SwiftUI
+import Charts
 
 struct InsightsView: View {
+    
+    //MARK: Propreties
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.date, order: .reverse)]) var income : FetchedResults<Income>
+    
+    @ObservedObject var incomeChartViewModel : IncomeChartViewModel
+    
+    func getDate(date: Date)->String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMM dd"
+        let stringDate = dateFormatter.string(from: date)
+        return stringDate
+    }
+    
     var body: some View {
         NavigationStack {
-            VStack {
-                Text("Coming Soon!")
-                    .font(Font.custom("Fonzie", size: 30))
+            Chart(income) { inc in
+                BarMark (
+                    x: .value("Date", inc.date!),
+                    y: .value("Amount", inc.amount)
+                )
+                .foregroundStyle(.red)
             }
             .navigationTitle("Insights")
         }
@@ -22,6 +39,6 @@ struct InsightsView: View {
 
 struct ChartsView_Previews: PreviewProvider {
     static var previews: some View {
-        InsightsView()
+        InsightsView(incomeChartViewModel: IncomeChartViewModel(incomes: []))
     }
 }

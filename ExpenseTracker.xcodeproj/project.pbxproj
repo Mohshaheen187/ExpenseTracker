@@ -27,6 +27,7 @@
 		6ADB1DEA2AB645F200286A7F /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB1DE92AB645F200286A7F /* NewTransactionView.swift */; };
 		6AEB80BA2AB1F1F50075B4EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB80B92AB1F1F50075B4EB /* Category.swift */; };
 		6AECA52F2AB9BFCC004AE235 /* NewTransactionsTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AECA52E2AB9BFCC004AE235 /* NewTransactionsTexts.swift */; };
+		6AECA5312ABA24EE004AE235 /* IncomeChartsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AECA5302ABA24EE004AE235 /* IncomeChartsViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		6ADB1DE92AB645F200286A7F /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		6AEB80B92AB1F1F50075B4EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		6AECA52E2AB9BFCC004AE235 /* NewTransactionsTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionsTexts.swift; sourceTree = "<group>"; };
+		6AECA5302ABA24EE004AE235 /* IncomeChartsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncomeChartsViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +70,7 @@
 		6A9F10352AB49A14009A489D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				6AECA5302ABA24EE004AE235 /* IncomeChartsViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				6ADB1DEA2AB645F200286A7F /* NewTransactionView.swift in Sources */,
 				6A28A8B52AB11F4500EFFC22 /* TabViews.swift in Sources */,
 				6AC14AA02AB0C6BE00E38074 /* ExpenseTrackerApp.swift in Sources */,
+				6AECA5312ABA24EE004AE235 /* IncomeChartsViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
