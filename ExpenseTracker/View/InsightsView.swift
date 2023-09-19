@@ -14,10 +14,9 @@ struct InsightsView: View {
                 Text("Coming Soon!")
                     .font(Font.custom("Fonzie", size: 30))
             }
-            .navigationTitle("Charts")
+            .navigationTitle("Insights")
         }
         .tint(Color("color4"))
-        .font(Font.custom("Fonzie", size: 20))
     }
 }
 
