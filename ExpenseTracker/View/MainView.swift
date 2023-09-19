@@ -16,14 +16,12 @@ struct MainView: View {
     
     //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
-    @State private var addNewIncome : Bool = false
-    @State private var addNewOutcome : Bool = false
+    
     @State private var selectedTransactionType : TransactionType = .income
     @State private var incomeBalance: Double = 0.0
     @State private var outcomeBalance: Double = 0.0
     @State private var newTransactionSheet : Bool = false
     
-    @State private var totalBalance : Double = 0.0
     @State private var navigationTitle : String = ""
     
     //MARK: BODY
@@ -47,6 +45,7 @@ struct MainView: View {
             .padding()
             .navigationTitle("Transactions")
             .toolbar {
+                
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button {
                         newTransactionSheet = true
@@ -56,7 +55,7 @@ struct MainView: View {
                             navigationTitle = "Outcome stream"
                         }
                     } label: {
-                        Image(systemName: "plus.circle.fill")
+                        Label("Add transaction", systemImage: "plus.circle.fill")
                     }
                     .sheet(isPresented: $newTransactionSheet) {
                         NewTransactionView(transactionType: $selectedTransactionType, navigationTitle: $navigationTitle)
@@ -71,10 +70,6 @@ struct MainView: View {
             .tint(Color("color4"))
             .font(Font.custom("Fonzie", size: 20))
         }
-    }
-    
-    func updateBalance() -> Double {
-        return incomeBalance - outcomeBalance
     }
 }
 

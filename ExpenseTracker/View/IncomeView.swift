@@ -61,7 +61,7 @@ struct IncomeView: View {
                             Text(calcTimeSince(date: inc.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(String(format: "%.2f", inc.amount) + inc.currency!)")
+                            Text("\(String(format: "%.2f", inc.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.green)
                         }

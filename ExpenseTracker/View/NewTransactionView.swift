@@ -20,51 +20,66 @@ struct NewTransactionView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
-    @State private var selectedCurrency : Currency = .aud
     @Binding var transactionType : TransactionType
     
     @Binding var navigationTitle : String
     
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    Section("Title") {
-                        TextField("Where did you get the money?", text: $title, axis: .vertical)
-                    }
-                    
-                    Section("Amount") {
-                        TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
-                            .keyboardType(.decimalPad)
-                    }
-                    
-                    Section("Date") {
-                        DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
-                            .font(Font.custom("Fonzie", size: 15))
-                    }
-                    
-                    Section("Category") {
-                        Picker("Select a category", selection: $selectedCategory) {
-                            ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
-                                Label {
-                                    Text(category.description)
-                                } icon: {
-                                    Image(systemName: category.imageName)
-                                        .foregroundColor(category.imageColor)
+            List {
+                if transactionType == .income {
+                    ForEach(Transactions[.income] ?? [], id: \.self) { inc in
+                        Section("Title") {
+                            TextField(inc.title, text: $title, axis: .vertical)
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Amount") {
+                            TextField(inc.amount, value: $amount, formatter: NumberFormatter())
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Date") {
+                            DatePicker(inc.date, selection: $date, in: ...Date(), displayedComponents: [.date])
+                        }
+                        Section("Category") {
+                            Picker("Select a category", selection: $selectedCategory) {
+                                ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                                    Label {
+                                        Text(category.description)
+                                    } icon: {
+                                        Image(systemName: category.imageName)
+                                            .foregroundColor(category.imageColor)
+                                    }
                                 }
                             }
+                            .pickerStyle(.navigationLink)
                         }
-                        .pickerStyle(.navigationLink)
                     }
-                    
-                    Section("Currecny") {
-                        Picker("Select a currency", selection: $selectedCurrency) {
-                            ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
-                                Text(currency.iso)
-                                    .tag(currency)
-                            }
+                } else {
+                    ForEach(Transactions[.outcome] ?? [], id: \.self) { out in
+                        Section("Title") {
+                            TextField(out.title, text: $title, axis: .vertical)
+                                .scrollDismissesKeyboard(.interactively)
                         }
-                        .pickerStyle(.navigationLink)
+                        Section("Amount") {
+                            TextField(out.amount, value: $amount, formatter: NumberFormatter())
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Date") {
+                            DatePicker(out.date, selection: $date, in: ...Date(), displayedComponents: [.date])
+                        }
+                        Section("Category") {
+                            Picker("Select a category", selection: $selectedCategory) {
+                                ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                                    Label {
+                                        Text(category.description)
+                                    } icon: {
+                                        Image(systemName: category.imageName)
+                                            .foregroundColor(category.imageColor)
+                                    }
+                                }
+                            }
+                            .pickerStyle(.navigationLink)
+                        }
                     }
                 }
             }
@@ -73,10 +88,10 @@ struct NewTransactionView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         if transactionType == .income {
-                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
+                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             dismiss()
                         } else {
-                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
+                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             dismiss()
                         }
                     }

@@ -60,7 +60,7 @@ struct OutcomeView: View {
                             Text(calcTimeSince(date: out.date!))
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.secondary)
-                            Text("\(String(format: "%.2f", out.amount) + out.currency!)")
+                            Text("\(String(format: "%.2f", out.amount))")
                                 .font(Font.custom("Fonzie", size: 15))
                                 .foregroundColor(.red)
                         }

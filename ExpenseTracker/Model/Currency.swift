@@ -46,4 +46,31 @@ enum Currency: String, CaseIterable {
             return "JOD"
         }
     }
+    
+    var countryFlag : String {
+        switch self {
+        case .usd:
+            return "usa"
+        case .eur:
+            return "euro"
+        case .jpy:
+            return "japan"
+        case .gbp:
+            return "uk"
+        case .aud:
+            return "australia"
+        case .cad:
+            return "canada"
+        case .chf:
+            return "switzerland"
+        case .cny:
+            return "china"
+        case .sek:
+            return "sweden"
+        case .nzd:
+            return "new zealand"
+        case .jod:
+            return "jordan"
+        }
+    }
 }
