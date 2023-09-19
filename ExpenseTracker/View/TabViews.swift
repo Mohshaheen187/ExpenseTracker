@@ -19,10 +19,10 @@ struct TabViews: View {
                     Label("Dashboard", systemImage: "house")
                 }
             
-            ChartsView()
+            InsightsView()
                 .tag(2)
                 .tabItem {
-                    Label("Charts", systemImage: "rectangle.3.group")
+                    Label("Charts", systemImage: "chart.bar.xaxis")
                 }
         }
         .tint(Color("color4"))
