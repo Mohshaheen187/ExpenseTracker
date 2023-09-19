@@ -20,7 +20,6 @@ struct NewTransactionView: View {
     
     @State private var presentAlert : AlertsHandling?
     @State private var selectedCategory: Category = .car
-    @State private var selectedCurrency : Currency = .aud
     @Binding var transactionType : TransactionType
     
     @Binding var navigationTitle : String
@@ -54,16 +53,6 @@ struct NewTransactionView: View {
                                     Image(systemName: category.imageName)
                                         .foregroundColor(category.imageColor)
                                 }
-                            }
-                        }
-                        .pickerStyle(.navigationLink)
-                    }
-                    
-                    Section("Currecny") {
-                        Picker("Select a currency", selection: $selectedCurrency) {
-                            ForEach(Currency.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { currency in
-                                Text(currency.iso)
-                                    .tag(currency)
                             }
                         }
                         .pickerStyle(.navigationLink)

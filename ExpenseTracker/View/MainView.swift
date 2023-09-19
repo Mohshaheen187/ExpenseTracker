@@ -16,14 +16,12 @@ struct MainView: View {
     
     //MARK: Propreties
     @Environment (\.managedObjectContext) var moc
-    @State private var addNewIncome : Bool = false
-    @State private var addNewOutcome : Bool = false
+    
     @State private var selectedTransactionType : TransactionType = .income
     @State private var incomeBalance: Double = 0.0
     @State private var outcomeBalance: Double = 0.0
     @State private var newTransactionSheet : Bool = false
     
-    @State private var totalBalance : Double = 0.0
     @State private var navigationTitle : String = ""
     
     //MARK: BODY
