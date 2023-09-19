@@ -75,10 +75,10 @@ struct NewTransactionView: View {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Add") {
                         if transactionType == .income {
-                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
+                            DataController().addIncome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             dismiss()
                         } else {
-                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, currency: selectedCurrency.iso, context: moc)
+                            DataController().addOutcome(title: title, amount: amount, date: date, category: selectedCategory.rawValue, context: moc)
                             dismiss()
                         }
                     }
