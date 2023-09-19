@@ -26,6 +26,7 @@
 		6ACED8B32AB1A91B00FEF6FE /* EditOutcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */; };
 		6ADB1DEA2AB645F200286A7F /* NewTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6ADB1DE92AB645F200286A7F /* NewTransactionView.swift */; };
 		6AEB80BA2AB1F1F50075B4EB /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AEB80B92AB1F1F50075B4EB /* Category.swift */; };
+		6AECA52F2AB9BFCC004AE235 /* NewTransactionsTexts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AECA52E2AB9BFCC004AE235 /* NewTransactionsTexts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		6ACED8B22AB1A91B00FEF6FE /* EditOutcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditOutcomeView.swift; sourceTree = "<group>"; };
 		6ADB1DE92AB645F200286A7F /* NewTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionView.swift; sourceTree = "<group>"; };
 		6AEB80B92AB1F1F50075B4EB /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		6AECA52E2AB9BFCC004AE235 /* NewTransactionsTexts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewTransactionsTexts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 			children = (
 				6AC14AB62AB0DF9800E38074 /* TimeFormatting.swift */,
 				6ACED8AC2AB19FD000FEF6FE /* AlertsHandling.swift */,
+				6AECA52E2AB9BFCC004AE235 /* NewTransactionsTexts.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6AECA52F2AB9BFCC004AE235 /* NewTransactionsTexts.swift in Sources */,
 				6AC14AB72AB0DF9800E38074 /* TimeFormatting.swift in Sources */,
 				6ACED8AD2AB19FD000FEF6FE /* AlertsHandling.swift in Sources */,
 				6AC14AB92AB0E08D00E38074 /* IncomeView.swift in Sources */,

@@ -26,36 +26,60 @@ struct NewTransactionView: View {
     
     var body: some View {
         NavigationStack {
-            VStack {
-                List {
-                    Section("Title") {
-                        TextField("Where did you get the money?", text: $title, axis: .vertical)
-                            .scrollDismissesKeyboard(.interactively)
-                    }
-                    
-                    Section("Amount") {
-                        TextField("How much did you received?", value: $amount, formatter: NumberFormatter())
-                            .keyboardType(.decimalPad)
-                            .scrollDismissesKeyboard(.interactively)
-                    }
-                    
-                    Section("Date") {
-                        DatePicker("When did you get the money?", selection: $date, in: ...Date(), displayedComponents: [.date])
-                            .font(Font.custom("Fonzie", size: 15))
-                    }
-                    
-                    Section("Category") {
-                        Picker("Select a category", selection: $selectedCategory) {
-                            ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
-                                Label {
-                                    Text(category.description)
-                                } icon: {
-                                    Image(systemName: category.imageName)
-                                        .foregroundColor(category.imageColor)
+            List {
+                if transactionType == .income {
+                    ForEach(Transactions[.income] ?? [], id: \.self) { inc in
+                        Section("Title") {
+                            TextField(inc.title, text: $title, axis: .vertical)
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Amount") {
+                            TextField(inc.amount, value: $amount, formatter: NumberFormatter())
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Date") {
+                            DatePicker(inc.date, selection: $date, in: ...Date(), displayedComponents: [.date])
+                        }
+                        Section("Category") {
+                            Picker("Select a category", selection: $selectedCategory) {
+                                ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                                    Label {
+                                        Text(category.description)
+                                    } icon: {
+                                        Image(systemName: category.imageName)
+                                            .foregroundColor(category.imageColor)
+                                    }
                                 }
                             }
+                            .pickerStyle(.navigationLink)
                         }
-                        .pickerStyle(.navigationLink)
+                    }
+                } else {
+                    ForEach(Transactions[.outcome] ?? [], id: \.self) { out in
+                        Section("Title") {
+                            TextField(out.title, text: $title, axis: .vertical)
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Amount") {
+                            TextField(out.amount, value: $amount, formatter: NumberFormatter())
+                                .scrollDismissesKeyboard(.interactively)
+                        }
+                        Section("Date") {
+                            DatePicker(out.date, selection: $date, in: ...Date(), displayedComponents: [.date])
+                        }
+                        Section("Category") {
+                            Picker("Select a category", selection: $selectedCategory) {
+                                ForEach(Category.allCases.sorted(by: { $0.rawValue < $1.rawValue }), id: \.self) { category in
+                                    Label {
+                                        Text(category.description)
+                                    } icon: {
+                                        Image(systemName: category.imageName)
+                                            .foregroundColor(category.imageColor)
+                                    }
+                                }
+                            }
+                            .pickerStyle(.navigationLink)
+                        }
                     }
                 }
             }
